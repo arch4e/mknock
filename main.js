@@ -1,20 +1,24 @@
 function main() {
     create_elements();
-
-    if (window.location.href.includes("/#settings/accounts")) click_mailcheck_btn()
+    if (window.location.href.includes("/#settings/accounts")) click_mailcheck_btn();
 }
 
 function create_elements() {
-    if (document.getElementById('loading').style.display == 'none' &&
-        document.getElementsByClassName('mknock-btn').length <= 0) {
-        const buttonElm    = document.createElement('button');
-        const sidepanelElm = document.querySelector('[role="complementary"]').querySelector('[role="tablist"]');
+    try {
+        if (document.getElementById('loading').style.display == 'none' &&
+            document.getElementsByClassName('mknock-btn') != null) {
+            const buttonElm    = document.createElement('button');
+            const sidepanelElm = document.querySelector('[role="complementary"]').querySelector('[role="tablist"]');
 
-        buttonElm.classList.add("mknock-btn");
-        buttonElm.addEventListener('click', check_ex_mail_box);
-        buttonElm.innerText = '↻';
-        sidepanelElm.prepend(buttonElm);
-    } else {
+            buttonElm.classList.add("mknock-btn");
+            buttonElm.addEventListener('click', check_ex_mail_box);
+            buttonElm.innerText = '↻';
+            sidepanelElm.prepend(buttonElm);
+        } else {
+            throw new Error('Failed to create elements');
+        }
+    } catch(e) {
+        console.error(e);
         setTimeout(create_elements, 1000); // 1sec.
     }
 }

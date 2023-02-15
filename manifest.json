@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name"       : "mknock",
   "description": "external email box loader for gmail",
-  "version"    : "0.1.0",
+  "version"    : "0.1.1",
   "content_scripts": [
     {
       "matches": [ "https://mail.google.com/*" ],
